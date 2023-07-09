@@ -1,0 +1,31 @@
+.nav {
+	background-color: #fdb137;
+	color: #0e65a3;
+	display: flex;
+	justify-content: space-between;
+	gap: rem;
+	padding: 1rem;
+}
+
+.nav ul {
+	background-color: #fdb137;
+	margin: 0;
+	list-style: none;
+	display: flex;
+	gap: 1rem;
+}
+
+.nav a {
+	background-color: white;
+	border-radius: 10px;
+	color: inherit;
+	text-decoration: none;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	padding: 0.5rem;
+}
+
+nav li:hover {
+	text-decoration: underline;
+}
