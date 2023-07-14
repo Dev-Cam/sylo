@@ -13,5 +13,7 @@
 	},
 	"editor.codeActionsOnSave": {
 		"source.fixAll": true
-	}
+	},
+	"prettier.singleQuote": true,
+	"prettier.useTabs": true
 }

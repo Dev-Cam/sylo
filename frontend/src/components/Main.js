@@ -4,9 +4,8 @@ import { styled } from 'styled-components'
 
 const Container = styled.div`
 	background-color: #feeaa5;
-	
-
-text-align: center;
+  text-align: center;
+  height: 100vh;
 `
 export default function Main() {
   return <Container >

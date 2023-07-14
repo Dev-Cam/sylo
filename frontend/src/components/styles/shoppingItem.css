@@ -1,0 +1,30 @@
+.shopping-item {
+	display: flex;
+	/* border: 1px solid red; */
+	justify-content: space-between;
+	padding: 5px;
+	align-items: center;
+}
+
+.check-listItem {
+	display: flex;
+	gap: 5px;
+	align-items: center;
+}
+
+.checkbox {
+	display: flex;
+	vertical-align: text-top;
+}
+
+.shopping-list-edit-remove {
+	display: flex;
+	/* border: 1px solid red; */
+	justify-content: space-between;
+	width: 50px;
+}
+
+.complete {
+	text-decoration: line-through;
+	text-decoration-thickness: 2px;
+}
