@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 import { useShoppingListsContext } from '../hooks/useShoppingListsContext';
-
+import ActiveLists from '../components/shoppingList/ActiveLists';
 import CreateShoppingList from '../components/shoppingList/CreateShoppingListForm';
-import ShoppingListTile from '../components/shoppingList/ShoppingListTile';
 
 export default function ShoppingListPage() {
 	const { shoppingLists, dispatch } = useShoppingListsContext();
@@ -19,19 +18,12 @@ export default function ShoppingListPage() {
 		fetchShoppingLists();
 	}, [dispatch]);
 
+	// console.log(shoppingLists);
 	return (
 		<div>
 			<h1>Shopping Lists</h1>
 			<CreateShoppingList />
-			<div className='shopping-tiles'>
-				{shoppingLists &&
-					shoppingLists.map((shoppingList) => (
-						<ShoppingListTile
-							key={shoppingList._id}
-							shoppingList={shoppingList}
-						/>
-					))}
-			</div>
+			{shoppingLists && <ActiveLists shoppingLists={shoppingLists} />}
 		</div>
 	);
 }

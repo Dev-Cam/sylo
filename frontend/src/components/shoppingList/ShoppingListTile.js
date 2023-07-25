@@ -4,8 +4,9 @@ import { formatDistanceToNow } from 'date-fns/esm';
 
 export default function ShoppingListTile({ shoppingList }) {
 	const { dispatch } = useShoppingListsContext();
+	const { title, creator, createdAt } = shoppingList;
 
-	const handleClick = async () => {
+	const deleteList = async () => {
 		const response = await fetch('/api/shoppingLists/' + shoppingList._id, {
 			method: 'DELETE',
 		});
@@ -15,7 +16,7 @@ export default function ShoppingListTile({ shoppingList }) {
 			dispatch({ type: 'DELETE_SHOPPINGLIST', payload: json });
 		}
 	};
-	const { title, creator, createdAt } = shoppingList;
+
 	return (
 		<div className='tile'>
 			<div className='buttons'>
@@ -24,7 +25,7 @@ export default function ShoppingListTile({ shoppingList }) {
 				</div>
 				<div>
 					<button>View</button>
-					<button onClick={handleClick}>Delete</button>
+					<button onClick={deleteList}>Delete</button>
 				</div>
 				<div>
 					<button>Complete</button>
