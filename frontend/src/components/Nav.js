@@ -1,21 +1,24 @@
-import './styles/nav.css'
+import { Link } from 'react-router-dom';
+import './styles/nav.css';
 
 export default function Nav() {
-  return <nav className='nav'>
-    <a href='/'>Sylo</a>
-    <ul>
-      <li>
-        <a href="/shoppingList">Shopping list</a>
-      </li>
-      <li>
-        <a href="/chores">Chores</a>
-      </li>
-      <li>
-        <a href="/socialEvents">Social Events</a>
-      </li>
-      <li>
-        <a href="/bills">Bills</a>
-      </li>
-    </ul>
-  </nav>
-} 
+	return (
+		<nav className='nav'>
+			<Link to='/'>Sylo</Link>
+			<ul>
+				<li>
+					<Link to='/shoppingList'>Shopping list</Link>
+				</li>
+				<li>
+					<Link to='/chores'>Chores</Link>
+				</li>
+				<li>
+					<Link to='/socialEvents'>Social Events</Link>
+				</li>
+				<li>
+					<Link to='/bills'>Bills</Link>
+				</li>
+			</ul>
+		</nav>
+	);
+}

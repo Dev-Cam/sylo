@@ -29,6 +29,20 @@ const getShoppingList = async (req, res) => {
 const createShoppingList = async (req, res) => {
 	const { title, creator } = req.body;
 
+	let emptyFields = [];
+
+	if (!title) {
+		emptyFields.push('title');
+	}
+
+	if (!creator) {
+		emptyFields.push('creator');
+	}
+	if (emptyFields.length > 0) {
+		return res
+			.status(400)
+			.json({ error: 'Please fill in all the fields', emptyFields });
+	}
 	// add doc to db
 	try {
 		const shoppingList = await ShoppingList.create({ title, creator });

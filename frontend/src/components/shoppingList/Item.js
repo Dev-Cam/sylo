@@ -1,41 +1,45 @@
 import { useState } from 'react';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import { TiEdit } from 'react-icons/ti';
-import '../styles/shoppingItem.css';
+import '../styles/ShoppingList/shoppingItem.css';
 import AddItemInput from './AddItemInput';
-
 
 export default function Item({
 	shoppingItems,
 	removeShoppingItem,
 	editShoppingItem,
-	completeShoppingItem
+	completeShoppingItem,
 }) {
 	const [edit, setEdit] = useState({
 		id: null,
 		value: '',
 	});
 
-	const [isComplete, setIsComplete] = useState(true)
+	const [isComplete, setIsComplete] = useState(true);
 
-	const submitUpdate = value => {
-		editShoppingItem(edit.id, value)
+	const submitUpdate = (value) => {
+		editShoppingItem(edit.id, value);
 		setEdit({
 			id: null,
 			value: '',
-		})
+		});
 	};
 
-	if(edit.id) {
-		return <AddItemInput edit={edit} onSubmit={submitUpdate} />
-	};
-
-
+	if (edit.id) {
+		return <AddItemInput edit={edit} onSubmit={submitUpdate} />;
+	}
 
 	return shoppingItems.map((shoppingItem, index) => (
-		<div className='shopping-item' key={index} >
-			<div className={shoppingItem.isComplete ? 'check-listItem complete' : 'check-listItem'}>
-				<div onClick={() => completeShoppingItem(shoppingItem.id)}  key={shoppingItem.id}>
+		<div className='shopping-item' key={index}>
+			<div
+				className={
+					shoppingItem.isComplete ? 'check-listItem complete' : 'check-listItem'
+				}
+			>
+				<div
+					onClick={() => completeShoppingItem(shoppingItem.id)}
+					key={shoppingItem.id}
+				>
 					{shoppingItem.text}
 				</div>
 			</div>
@@ -44,8 +48,11 @@ export default function Item({
 					size={21}
 					onClick={() => removeShoppingItem(shoppingItem.id)}
 				/>
-				<TiEdit size={21} 
-				onClick={() => setEdit({ id: shoppingItem.id, value: shoppingItem.text})}
+				<TiEdit
+					size={21}
+					onClick={() =>
+						setEdit({ id: shoppingItem.id, value: shoppingItem.text })
+					}
 				/>
 			</div>
 		</div>

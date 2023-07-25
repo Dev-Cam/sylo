@@ -1,6 +1,5 @@
 .shopping-item {
 	display: flex;
-	/* border: 1px solid red; */
 	justify-content: space-between;
 	padding: 5px;
 	align-items: center;
@@ -19,7 +18,6 @@
 
 .shopping-list-edit-remove {
 	display: flex;
-	/* border: 1px solid red; */
 	justify-content: space-between;
 	width: 50px;
 }
