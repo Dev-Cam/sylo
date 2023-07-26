@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import AddItemInput from './AddItemInput';
+import AddItemInputForm from './AddItemInputForm';
 import Item from './Item';
 import '../styles/ShoppingList/shoppingList.css';
 
@@ -41,13 +41,16 @@ export default function List() {
 
 	return (
 		<div className='shopping-list'>
-			<AddItemInput onSubmit={addShoppingItem} />
-			<Item
-				completeShoppingItem={completeShoppingItem}
-				shoppingItems={shoppingItems}
-				editShoppingItem={editShoppingItem}
-				removeShoppingItem={removeShoppingItem}
-			/>
+			<form>
+				<AddItemInputForm onSubmit={addShoppingItem} />
+				<Item
+					completeShoppingItem={completeShoppingItem}
+					shoppingItems={shoppingItems}
+					editShoppingItem={editShoppingItem}
+					removeShoppingItem={removeShoppingItem}
+				/>
+				<button type='submit'>Save</button>
+			</form>
 		</div>
 	);
 }

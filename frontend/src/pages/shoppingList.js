@@ -18,10 +18,9 @@ export default function ShoppingListPage() {
 		fetchShoppingLists();
 	}, [dispatch]);
 
-	// console.log(shoppingLists);
 	return (
 		<div>
-			<h1>Shopping Lists</h1>
+			<h1>Shopping Lists:</h1>
 			<CreateShoppingList />
 			{shoppingLists && <ActiveLists shoppingLists={shoppingLists} />}
 		</div>
