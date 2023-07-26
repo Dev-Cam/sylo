@@ -31,7 +31,7 @@ export default function CreateShoppingList() {
 			setCreator('');
 			setError(null);
 			setEmptyFields([]);
-			console.log('New workout added', json);
+			console.log('New shopping list added', json);
 			dispatch({ type: 'CREATE_SHOPPINGLIST', payload: json });
 		}
 	};

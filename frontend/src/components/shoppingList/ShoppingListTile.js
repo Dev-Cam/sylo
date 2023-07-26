@@ -26,7 +26,7 @@ export default function ShoppingListTile({ shoppingList }) {
 					<h4>{title}</h4>
 				</div>
 				<div>
-					<Link to={_id}>
+					<Link to={_id} state={title}>
 						<button>View</button>
 					</Link>
 					<button onClick={deleteList}>Delete</button>

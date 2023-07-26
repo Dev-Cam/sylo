@@ -2,8 +2,11 @@ import { useState } from 'react';
 import AddItemInputForm from './AddItemInputForm';
 import Item from './Item';
 import '../styles/ShoppingList/shoppingList.css';
+import { useLocation } from 'react-router-dom';
 
 export default function List() {
+	const location = useLocation();
+	const title = location.state;
 	const [shoppingItems, setShoppingItems] = useState([]);
 
 	const addShoppingItem = (shoppingItem) => {
@@ -41,16 +44,15 @@ export default function List() {
 
 	return (
 		<div className='shopping-list'>
-			<form>
-				<AddItemInputForm onSubmit={addShoppingItem} />
-				<Item
-					completeShoppingItem={completeShoppingItem}
-					shoppingItems={shoppingItems}
-					editShoppingItem={editShoppingItem}
-					removeShoppingItem={removeShoppingItem}
-				/>
-				<button type='submit'>Save</button>
-			</form>
+			<h2>Shopping list: {title}</h2>
+			<AddItemInputForm onSubmit={addShoppingItem} />
+			<Item
+				completeShoppingItem={completeShoppingItem}
+				shoppingItems={shoppingItems}
+				editShoppingItem={editShoppingItem}
+				removeShoppingItem={removeShoppingItem}
+			/>
+			<button type='submit'>Save</button>
 		</div>
 	);
 }
