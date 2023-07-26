@@ -1,0 +1,10 @@
+.root-layout {
+	background-color: #feeaa5;
+	text-align: center;
+	height: 100vh;
+}
+
+.main-container {
+	width: 80%;
+	margin: auto;
+}

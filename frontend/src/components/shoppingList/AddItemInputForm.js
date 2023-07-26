@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 
-export default function AddItemInput(props) {
+export default function AddItemInputForm(props) {
 	const [input, setInput] = useState(props.edit ? props.edit.value : '');
 
 	const focusRef = useRef(null);
@@ -30,7 +30,7 @@ export default function AddItemInput(props) {
 						type='text'
 						id='editItems'
 						name='editItems'
-						placeHolder=' Edit item'
+						placeholder=' Edit item'
 						value={input}
 						onChange={handleChange}
 						ref={focusRef}
@@ -43,7 +43,7 @@ export default function AddItemInput(props) {
 						type='text'
 						id='addItems'
 						name='addItems'
-						placeHolder=' New item'
+						placeholder=' New item'
 						value={input}
 						onChange={handleChange}
 						ref={focusRef}

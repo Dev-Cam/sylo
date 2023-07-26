@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import { TiEdit } from 'react-icons/ti';
 import '../styles/ShoppingList/shoppingItem.css';
-import AddItemInput from './AddItemInput';
+import AddItemInputForm from './AddItemInputForm';
 
 export default function Item({
 	shoppingItems,
@@ -26,7 +26,7 @@ export default function Item({
 	};
 
 	if (edit.id) {
-		return <AddItemInput edit={edit} onSubmit={submitUpdate} />;
+		return <AddItemInputForm edit={edit} onSubmit={submitUpdate} />;
 	}
 
 	return shoppingItems.map((shoppingItem, index) => (
