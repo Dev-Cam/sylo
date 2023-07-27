@@ -4,6 +4,7 @@ import {
 	createBrowserRouter,
 	createRoutesFromElements,
 	RouterProvider,
+	Navigate,
 } from 'react-router-dom';
 
 //Pages
@@ -14,6 +15,8 @@ import {
 	ChoresPage,
 	ShoppingListPage,
 	NotFoundPage,
+	LoginPage,
+	SignupPage,
 } from './pages/index';
 import List from './components/shoppingList/List';
 
@@ -25,6 +28,9 @@ const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path='/' element={<RootLayout />}>
 			<Route index element={<HomePage />} />
+			<Route path='login' element={<LoginPage />} />
+			<Route path='signup' element={<SignupPage />} />
+
 			<Route path='bills' element={<BillsPage />} />
 			<Route path='socialEvents' element={<SocialEventsPage />} />
 			<Route path='chores' element={<ChoresPage />} />

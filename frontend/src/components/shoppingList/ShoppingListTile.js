@@ -2,14 +2,20 @@ import '../styles/ShoppingList/shoppingListTile.css';
 import { useShoppingListsContext } from '../../hooks/useShoppingListsContext';
 import { formatDistanceToNow } from 'date-fns/esm';
 import { Link } from 'react-router-dom';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 export default function ShoppingListTile({ shoppingList }) {
 	const { dispatch } = useShoppingListsContext();
 	const { title, creator, createdAt, _id } = shoppingList;
+	const { user } = useAuthContext();
 
 	const deleteList = async () => {
+		if (!user) {
+			return;
+		}
 		const response = await fetch('/api/shoppingLists/' + shoppingList._id, {
 			method: 'DELETE',
+			headers: { Authorization: `Bearer ${user.token}` },
 		});
 		const json = await response.json();
 

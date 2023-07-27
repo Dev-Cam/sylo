@@ -1,22 +1,28 @@
 import { useEffect } from 'react';
 import { useShoppingListsContext } from '../hooks/useShoppingListsContext';
+import { useAuthContext } from '../hooks/useAuthContext';
 import ActiveLists from '../components/shoppingList/ActiveLists';
 import CreateShoppingList from '../components/shoppingList/CreateShoppingListForm';
 
 export default function ShoppingListPage() {
 	const { shoppingLists, dispatch } = useShoppingListsContext();
+	const { user } = useAuthContext();
 
 	useEffect(() => {
 		const fetchShoppingLists = async () => {
-			const response = await fetch('/api/shoppinglists');
+			const response = await fetch('/api/shoppinglists', {
+				headers: { Authorization: `Bearer ${user.token}` },
+			});
 			const json = await response.json();
 
 			if (response.ok) {
 				dispatch({ type: 'SET_SHOPPINGLISTS', payload: json });
 			}
 		};
-		fetchShoppingLists();
-	}, [dispatch]);
+		if (user) {
+			fetchShoppingLists();
+		}
+	}, [dispatch, user]);
 
 	return (
 		<div>

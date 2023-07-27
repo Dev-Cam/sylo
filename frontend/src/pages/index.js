@@ -4,8 +4,12 @@ import ChoresPage from './chores';
 import HomePage from './home';
 import ShoppingListPage from './shoppingList';
 import NotFoundPage from './notFound';
+import SignupPage from './signup';
+import LoginPage from './login';
 
 export {
+	SignupPage,
+	LoginPage,
 	SocialEventsPage,
 	BillsPage,
 	ChoresPage,
