@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import '../styles/ShoppingList/createShoppingListForm.css';
 import { useShoppingListsContext } from '../../hooks/useShoppingListsContext';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 export default function CreateShoppingList() {
 	const { dispatch } = useShoppingListsContext();
+	const { user } = useAuthContext();
+
+	console.log(user);
 
 	const [title, setTitle] = useState('');
 	const [creator, setCreator] = useState('');
@@ -12,13 +16,20 @@ export default function CreateShoppingList() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		if (!user) {
+			setError('You must be logged in');
+			return;
+		}
 
 		const shoppingList = { title, creator };
 
 		const response = await fetch('/api/shoppingLists', {
 			method: 'POST',
 			body: JSON.stringify(shoppingList),
-			headers: { 'Content-type': 'application/json' },
+			headers: {
+				'Content-type': 'application/json',
+				Authorization: `Bearer ${user.token}`,
+			},
 		});
 		const json = await response.json();
 

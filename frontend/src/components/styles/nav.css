@@ -7,15 +7,20 @@
 	padding: 1rem;
 }
 
+.nav-links {
+	margin: 0;
+	list-style: none;
+	display: flex;
+	gap: 1rem;
+}
 .nav ul {
-	background-color: #fdb137;
 	margin: 0;
 	list-style: none;
 	display: flex;
 	gap: 1rem;
 }
 
-.nav a {
+a {
 	background-color: white;
 	border-radius: 10px;
 	color: inherit;
@@ -26,6 +31,6 @@
 	padding: 0.5rem;
 }
 
-nav li:hover {
+a:hover {
 	text-decoration: underline;
 }
