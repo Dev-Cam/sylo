@@ -1,10 +1,13 @@
 .nav {
-	background-color: #fdb137;
 	color: #0e65a3;
+	padding: 1rem;
+}
+
+.link-wrapper {
 	display: flex;
 	justify-content: space-between;
-	gap: rem;
-	padding: 1rem;
+	max-width: 1200px;
+	margin: auto;
 }
 
 .nav-links {
@@ -20,7 +23,7 @@
 	gap: 1rem;
 }
 
-a {
+nav a {
 	background-color: white;
 	border-radius: 10px;
 	color: inherit;
@@ -32,5 +35,10 @@ a {
 }
 
 a:hover {
+	color: white;
+	background-color: #0e65a3;
+}
+
+a.active {
 	text-decoration: underline;
 }
