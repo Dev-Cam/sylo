@@ -14,33 +14,35 @@ export default function SignupForm() {
 	};
 
 	return (
-		<form className='signup' onSubmit={handleSubmit}>
-			<h3>Sign up</h3>
-			<div>
-				<input
-					placeholder='Email'
-					type='email'
-					onChange={(e) => {
-						setEmail(e.target.value);
-					}}
-					value={email}
-				/>
-			</div>
+		<div className='auth-container'>
+			<form className='signup' onSubmit={handleSubmit}>
+				<h3>Sign up</h3>
+				<div>
+					<input
+						placeholder='Email'
+						type='email'
+						onChange={(e) => {
+							setEmail(e.target.value);
+						}}
+						value={email}
+					/>
+				</div>
 
-			<div>
-				<input
-					placeholder='Password'
-					type='password'
-					onChange={(e) => {
-						setPassword(e.target.value);
-					}}
-					value={password}
-				/>
-			</div>
-			<button type='submit' disabled={isLoading}>
-				Sign Up
-			</button>
-			{error && <div className='error'>{error}</div>}
-		</form>
+				<div>
+					<input
+						placeholder='Password'
+						type='password'
+						onChange={(e) => {
+							setPassword(e.target.value);
+						}}
+						value={password}
+					/>
+				</div>
+				<button type='submit' disabled={isLoading}>
+					Sign Up
+				</button>
+				{error && <div className='error'>{error}</div>}
+			</form>
+		</div>
 	);
 }

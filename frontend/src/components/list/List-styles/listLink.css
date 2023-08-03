@@ -1,0 +1,28 @@
+.list-links {
+	margin: 10px;
+}
+a {
+	text-decoration: none;
+	color: white;
+}
+
+a :hover {
+	text-decoration: underline;
+	background: white;
+	color: #0e65a3;
+}
+
+.active {
+	background: white;
+	color: #0e65a3;
+}
+
+.list-link-icon {
+	margin-right: 5px;
+}
+
+.row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}

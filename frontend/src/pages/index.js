@@ -1,19 +1,15 @@
-import SocialEventsPage from './socialEvents';
-import BillsPage from './bills';
-import ChoresPage from './chores';
 import HomePage from './home';
-import ShoppingListPage from './shoppingList';
+import ListPage from './Lists/list';
 import NotFoundPage from './notFound';
-import SignupPage from './signup';
-import LoginPage from './login';
+import SignupPage from './Auth/signup';
+import LoginPage from './Auth/login';
+import SelectedListPage from './Lists/selectedList';
 
 export {
 	SignupPage,
 	LoginPage,
-	SocialEventsPage,
-	BillsPage,
-	ChoresPage,
 	HomePage,
-	ShoppingListPage,
+	ListPage,
 	NotFoundPage,
+	SelectedListPage,
 };

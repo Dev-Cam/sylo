@@ -1,16 +1,13 @@
 import { useState } from 'react';
-import '../styles/ShoppingList/createShoppingListForm.css';
-import { useShoppingListsContext } from '../../hooks/useShoppingListsContext';
-import { useAuthContext } from '../../hooks/useAuthContext';
+import { useListsContext } from '../../../hooks/useListsContext';
+import { useAuthContext } from '../../../hooks/useAuthContext';
+import '../List-styles/createListForm.css';
 
-export default function CreateShoppingList() {
-	const { dispatch } = useShoppingListsContext();
+export default function CreateListForm() {
+	const { dispatch } = useListsContext();
 	const { user } = useAuthContext();
 
-	console.log(user);
-
 	const [title, setTitle] = useState('');
-	const [creator, setCreator] = useState('');
 	const [error, setError] = useState(null);
 	const [emptyFields, setEmptyFields] = useState([]);
 
@@ -21,11 +18,11 @@ export default function CreateShoppingList() {
 			return;
 		}
 
-		const shoppingList = { title, creator };
+		const list = { title };
 
-		const response = await fetch('/api/shoppingLists', {
+		const response = await fetch('/api/lists', {
 			method: 'POST',
-			body: JSON.stringify(shoppingList),
+			body: JSON.stringify(list),
 			headers: {
 				'Content-type': 'application/json',
 				Authorization: `Bearer ${user.token}`,
@@ -39,37 +36,26 @@ export default function CreateShoppingList() {
 		}
 		if (response.ok) {
 			setTitle('');
-			setCreator('');
 			setError(null);
 			setEmptyFields([]);
-			console.log('New shopping list added', json);
-			dispatch({ type: 'CREATE_SHOPPINGLIST', payload: json });
+			dispatch({ type: 'CREATE_LIST', payload: json });
 		}
 	};
 
 	return (
 		<div className='container'>
-			<h3>Create a New Shopping List</h3>
 			<form onSubmit={handleSubmit}>
+				<h3>Your Lists</h3>
 				<div>
 					<input
 						type='text'
-						placeholder='Name of list'
+						placeholder='Name of new list'
 						onChange={(e) => setTitle(e.target.value)}
 						value={title}
 						className={emptyFields.includes('title') ? 'error' : ''}
 					></input>
+					<button type='submit'>Create</button>
 				</div>
-				<div>
-					<input
-						type='text'
-						placeholder='Creator'
-						onChange={(e) => setCreator(e.target.value)}
-						value={creator}
-						className={emptyFields.includes('creator') ? 'error' : ''}
-					></input>
-				</div>
-				<button type='submit'>Create New Shopping List</button>
 				{error && <div className='error'>{error}</div>}
 			</form>
 		</div>
