@@ -1,56 +1,73 @@
 import { useState, useEffect, useRef } from 'react';
+import { useItemsContext } from '../../../hooks/useItemsContext';
+import { useAuthContext } from '../../../hooks/useAuthContext';
+import { useParams } from 'react-router-dom';
 
 export default function AddItemInputForm(props) {
-	const [input, setInput] = useState(props.edit ? props.edit.value : '');
+	const { user } = useAuthContext();
+	const { dispatch } = useItemsContext();
 
+	const [error, setError] = useState(null);
+	const [title, setTitle] = useState('');
+	const [emptyFields, setEmptyFields] = useState([]);
+
+	const { id } = useParams();
 	const focusRef = useRef(null);
+
+	const list_id = id;
 
 	useEffect(() => {
 		focusRef.current.focus();
 	});
 
-	const handleChange = (e) => {
-		setInput(e.target.value);
-	};
-
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		props.onSubmit({
-			id: Math.floor(Math.random() * 10000),
-			text: input,
+		if (!user) {
+			setError('You must be logged in');
+			return;
+		}
+
+		const item = { title, list_id };
+
+		const response = await fetch(`/api/items`, {
+			method: 'POST',
+			body: JSON.stringify(item),
+			headers: {
+				'Content-type': 'application/json',
+				Authorization: `Bearer ${user.token}`,
+			},
 		});
-		setInput('');
+		const json = await response.json();
+
+		if (!response.ok) {
+			setError(json.error);
+			setEmptyFields(json.emptyFields);
+		}
+		if (response.ok) {
+			setTitle('');
+			setError(null);
+			setEmptyFields([]);
+
+			dispatch({ type: 'CREATE_ITEM', payload: json });
+		}
 	};
 
 	return (
 		<form onSubmit={handleSubmit}>
-			{props.edit ? (
-				<div className='edit-item-styles'>
-					<input
-						type='text'
-						id='editItems'
-						name='editItems'
-						placeholder=' Edit item'
-						value={input}
-						onChange={handleChange}
-						ref={focusRef}
-					></input>
-					<button type='submit'>Edit</button>
-				</div>
-			) : (
-				<div className='add-item-styles'>
-					<input
-						type='text'
-						id='addItems'
-						name='addItems'
-						placeholder=' New item'
-						value={input}
-						onChange={handleChange}
-						ref={focusRef}
-					></input>
-					<button type='submit'>Add</button>
-				</div>
-			)}
+			<div className='add-item-styles'>
+				<input
+					type='text'
+					id='addItems'
+					name='addItems'
+					placeholder=' New item'
+					value={title}
+					onChange={(e) => setTitle(e.target.value)}
+					ref={focusRef}
+					className={emptyFields.includes('title') ? 'error' : ''}
+				/>
+				<button type='submit'>Add</button>
+			</div>
+			{error && <div className='error'>{error}</div>}
 		</form>
 	);
 }

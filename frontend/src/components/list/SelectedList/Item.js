@@ -1,39 +1,35 @@
-// import { useState } from 'react';
-// import { RiCloseCircleLine } from 'react-icons/ri';
-// import { TiEdit } from 'react-icons/ti';
+import { RiCloseCircleLine } from 'react-icons/ri';
+import { useItemsContext } from '../../../hooks/useItemsContext';
+import { useAuthContext } from '../../../hooks/useAuthContext';
+
 import '../List-styles/item.css';
-// import AddItemInputForm from './AddItemInputForm';
 
 export default function Item({ listItem }) {
-	const { title } = listItem;
-	// const [edit, setEdit] = useState({
-	// 	id: null,
-	// 	value: '',
-	// });
+	const { dispatch } = useItemsContext();
+	const { user } = useAuthContext();
+	const { title, _id } = listItem;
 
-	// const submitUpdate = (value) => {
-	// 	editItem(edit.id, value);
-	// 	setEdit({
-	// 		id: null,
-	// 		value: '',
-	// 	});
-	// };
+	const handleDelete = async () => {
+		if (!user) {
+			return;
+		}
 
-	// if (edit.id) {
-	// 	return <AddItemInputForm edit={edit} onSubmit={submitUpdate} />;
-	// }
+		const response = await fetch(`/api/items/${_id}`, {
+			method: 'DELETE',
+			headers: { Authorization: `Bearer ${user.token}` },
+		});
 
+		if (response.ok) {
+			dispatch({ type: 'DELETE_ITEM', payload: { _id } });
+		}
+	};
 	return (
 		<div className='shopping-item'>
 			<div>{title}</div>
 
-			{/* <div className='shopping-list-edit-remove'>
-				<RiCloseCircleLine size={21} onClick={() => removeItem(item.id)} />
-				<TiEdit
-					size={21}
-					onClick={() => setEdit({ id: item.id, value: item.text })}
-				/>
-			</div> */}
+			<div className='shopping-list-edit-remove'>
+				<RiCloseCircleLine onClick={handleDelete} size={21} />
+			</div>
 		</div>
 	);
 }

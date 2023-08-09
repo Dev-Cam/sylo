@@ -23,7 +23,7 @@ export const ListsReducer = (state, action) => {
 
 export const ListsContextProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(ListsReducer, {
-		lists: null,
+		lists: [],
 	});
 
 	return (

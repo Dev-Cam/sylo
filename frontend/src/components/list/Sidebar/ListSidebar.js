@@ -25,8 +25,6 @@ export default function ListSidebar() {
 		}
 	}, [dispatch, user]);
 
-	console.log(lists);
-
 	return (
 		<div className='list-sidebar'>
 			<CreateListForm />

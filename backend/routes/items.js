@@ -5,7 +5,7 @@ const {
 	getItems,
 	deleteItem,
 	updateItem,
-} = require('../controllers/itemsController');
+} = require('../controllers/itemController');
 const router = express.Router();
 const requireAuth = require('../middleware/requireAuth');
 

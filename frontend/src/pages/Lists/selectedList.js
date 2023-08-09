@@ -1,5 +1,5 @@
-import List from '../../components/list/SelectedList/List';
+import ItemsPage from '../../components/list/SelectedList/ItemsPage';
 
 export default function SelectedListPage() {
-	return <List />;
+	return <ItemsPage />;
 }

@@ -1,14 +1,18 @@
 import { useListsContext } from '../../../hooks/useListsContext';
-import { Link } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../../../hooks/useAuthContext';
+import { useItemsContext } from '../../../hooks/useItemsContext';
 import { FaClipboardList } from 'react-icons/fa';
 import '../List-styles/listLink.css';
 import { RiCloseCircleLine } from 'react-icons/ri';
 
 export default function ListLink({ list }) {
+	const redirect = useNavigate();
 	const { dispatch } = useListsContext();
+	const { dispatch: itemDispatch } = useItemsContext();
 	const { title, _id } = list;
 	const { user } = useAuthContext();
+	const { id: pageId } = useParams();
 
 	const deleteList = async () => {
 		if (!user) {
@@ -18,10 +22,14 @@ export default function ListLink({ list }) {
 			method: 'DELETE',
 			headers: { Authorization: `Bearer ${user.token}` },
 		});
-		const json = await response.json();
 
 		if (response.ok) {
-			dispatch({ type: 'DELETE_LIST', payload: json });
+			dispatch({ type: 'DELETE_LIST', payload: { _id } });
+			itemDispatch({ type: 'DELETE_ITEMS_BY_LIST_ID', payload: { _id } });
+
+			if (_id === pageId) {
+				return redirect('/list');
+			}
 		}
 	};
 

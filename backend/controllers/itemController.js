@@ -3,8 +3,12 @@ const mongoose = require('mongoose');
 
 // get all list items
 const getItems = async (req, res) => {
-	const list_id = req.list._id;
-	const items = await Item.find({ list_id }).sort({
+	const { listId } = req.query;
+
+	const items = await Item.find({
+		list_id: listId,
+		user_id: req.user._id,
+	}).sort({
 		createdAt: -1,
 	});
 
@@ -30,8 +34,7 @@ const getItem = async (req, res) => {
 
 // create new list item
 const createItem = async (req, res) => {
-	const { id } = req.params;
-	const { title } = req.body;
+	const { list_id, title } = req.body;
 
 	let emptyFields = [];
 
@@ -45,15 +48,14 @@ const createItem = async (req, res) => {
 	}
 	// add doc to db
 	try {
-		const list_id = id;
-		const item = await Item.create({ title, list_id });
+		const item = await Item.create({ title, list_id, user_id: req.user._id });
 		res.status(200).json(item);
 	} catch (error) {
 		res.status(400).json({ error: error.message });
 	}
 };
 
-//delete list item
+//delete item
 const deleteItem = async (req, res) => {
 	const { id } = req.params;
 
@@ -61,13 +63,13 @@ const deleteItem = async (req, res) => {
 		return res.status(404).json({ error: 'No such item' });
 	}
 
-	const item = await Item.findOneAndDelete({ _id: id });
+	const item = await Item.findOneAndDelete({ _id: id, user_id: req.user._id });
 
 	if (!item) {
 		return res.status(404).json({ error: 'No such item' });
 	}
 
-	res.status(200).json(item);
+	res.status(204).send();
 };
 
 // update list item

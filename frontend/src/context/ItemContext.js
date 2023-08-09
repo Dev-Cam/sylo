@@ -16,6 +16,12 @@ export const ItemsReducer = (state, action) => {
 			return {
 				items: state.items.filter((item) => item._id !== action.payload._id),
 			};
+		case 'DELETE_ITEMS_BY_LIST_ID':
+			return {
+				items: state.items.filter(
+					(item) => item.list_id !== action.payload._id
+				),
+			};
 		default:
 			return state;
 	}
@@ -23,12 +29,11 @@ export const ItemsReducer = (state, action) => {
 
 export const ItemsContextProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(ItemsReducer, {
-		lists: null,
+		items: [],
 	});
 
 	return (
 		<ItemsContext.Provider value={{ ...state, dispatch }}>
-			{console.log(state, dispatch)}
 			{children}
 		</ItemsContext.Provider>
 	);

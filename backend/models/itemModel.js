@@ -7,10 +7,13 @@ const itemSchema = new Schema({
 		type: String,
 		required: true,
 	},
-
 	list_id: {
-		type: String,
-		required: true,
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'List',
+	},
+	user_id: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User',
 	},
 });
 

@@ -1,9 +1,10 @@
-import { Outlet } from 'react-router-dom';
+import { useOutlet } from 'react-router-dom';
 
 import ListSidebar from './Sidebar/ListSidebar';
 import './List-styles/overview.css';
 
 export default function ListOverview() {
+	const outlet = useOutlet();
 	return (
 		<div className='overview-container'>
 			<div className='list-wrapper'>
@@ -11,7 +12,9 @@ export default function ListOverview() {
 					<ListSidebar />
 				</div>
 				<div className='list-content'>
-					<Outlet />
+					{outlet || (
+						<h2>Create a list or pick up where you left on an old one</h2>
+					)}
 				</div>
 			</div>
 		</div>

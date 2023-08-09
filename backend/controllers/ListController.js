@@ -1,3 +1,4 @@
+const Item = require('../models/itemModel');
 const List = require('../models/listModel');
 const mongoose = require('mongoose');
 
@@ -19,7 +20,7 @@ const getList = async (req, res) => {
 		return res.status(404).json({ error: 'No such list' });
 	}
 
-	const list = await List.findById(id);
+	const list = await List.findOne({ _id: id, user_id: req.user._id });
 
 	if (!list) {
 		return res.status(404).json({ error: 'No such list' });
@@ -60,13 +61,14 @@ const deleteList = async (req, res) => {
 		return res.status(404).json({ error: 'No such list' });
 	}
 
-	const list = await List.findOneAndDelete({ _id: id });
+	const list = await List.findOneAndDelete({ _id: id, user_id: req.user._id });
+	await Item.deleteMany({ list_id: id, user_id: req.user._id });
 
 	if (!list) {
 		return res.status(404).json({ error: 'No such list' });
 	}
 
-	res.status(200).json(list);
+	res.status(204).send();
 };
 
 // update list

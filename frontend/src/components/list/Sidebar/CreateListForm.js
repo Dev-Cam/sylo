@@ -49,7 +49,7 @@ export default function CreateListForm() {
 				<div>
 					<input
 						type='text'
-						placeholder='Name of new list'
+						placeholder=' Create new list'
 						onChange={(e) => setTitle(e.target.value)}
 						value={title}
 						className={emptyFields.includes('title') ? 'error' : ''}
