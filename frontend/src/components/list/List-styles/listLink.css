@@ -10,11 +10,8 @@ a :hover {
 	text-decoration: underline;
 	background: white;
 	color: #0e65a3;
-}
-
-.active {
-	background: white;
-	color: #0e65a3;
+	border-radius: 4px;
+	padding: 0 10px;
 }
 
 .list-link-icon {

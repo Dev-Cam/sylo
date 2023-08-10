@@ -3,9 +3,11 @@ import CreateListForm from './CreateListForm';
 import { useListsContext } from '../../../hooks/useListsContext';
 import { useAuthContext } from '../../../hooks/useAuthContext';
 import { useEffect } from 'react';
-import '../List-styles/sidebar.css';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
+import { AiOutlineArrowRight } from 'react-icons/ai';
+import '../List-styles/list.css';
 
-export default function ListSidebar() {
+export default function ListSidebar({ openSidebar, open }) {
 	const { lists, dispatch } = useListsContext();
 	const { user } = useAuthContext();
 
@@ -26,10 +28,20 @@ export default function ListSidebar() {
 	}, [dispatch, user]);
 
 	return (
-		<div className='list-sidebar'>
-			<CreateListForm />
-			<div>
-				{lists && lists.map((list) => <ListLink key={list._id} list={list} />)}
+		<div className={open ? '' : 'hideSidebar'}>
+			<div className='arrow' onClick={openSidebar}>
+				{open ? (
+					<AiOutlineArrowLeft size={20} />
+				) : (
+					<AiOutlineArrowRight size={20} />
+				)}
+			</div>
+			<div className={open ? 'visible' : 'hidden'}>
+				<CreateListForm />
+				<div className='user-lists'>
+					{lists &&
+						lists.map((list) => <ListLink key={list._id} list={list} />)}
+				</div>
 			</div>
 		</div>
 	);

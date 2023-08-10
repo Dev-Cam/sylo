@@ -1,4 +1,4 @@
-.shopping-item {
+.item-container {
 	display: flex;
 	justify-content: space-between;
 	padding: 5px;
@@ -16,12 +16,6 @@
 	vertical-align: text-top;
 }
 
-.shopping-list-edit-remove {
-	display: flex;
-	justify-content: space-between;
-	width: 50px;
-}
-
 .complete {
 	text-decoration: line-through;
 	text-decoration-thickness: 2px;
@@ -30,4 +24,15 @@
 .list-items {
 	margin: auto;
 	max-width: 300px;
+}
+
+.item-container:hover {
+	text-decoration: underline;
+	background: #0e65a3;
+	color: white;
+	border-radius: 4px;
+}
+
+.icon {
+	display: flex;
 }

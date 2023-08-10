@@ -14,18 +14,18 @@ export default function Nav() {
 	return (
 		<nav className='nav'>
 			<div className='link-wrapper'>
-				<Link to='/'>Sylo</Link>
+				<NavLink to='/'>Sylo</NavLink>
 
 				{user && (
 					<div className='nav-links'>
 						<NavLink to='/list'>Lists</NavLink>
-						<Link onClick={handleClick}>Log Out</Link>
+						<NavLink onClick={handleClick}>Log Out</NavLink>
 					</div>
 				)}
 				{!user && (
 					<div className='nav-links'>
-						<Link to='/login'>Login</Link>
-						<Link to='/signup'>Signup</Link>
+						<NavLink to='/login'>Login</NavLink>
+						<NavLink to='/signup'>Signup</NavLink>
 					</div>
 				)}
 			</div>

@@ -38,12 +38,14 @@ export default function ListLink({ list }) {
 			<div className='buttons'>
 				<div className='row'>
 					<Link to={_id} state={title}>
-						<h4>
+						<p>
 							<FaClipboardList className='list-link-icon' />
 							{title}
-						</h4>
+						</p>
 					</Link>
-					<RiCloseCircleLine onClick={deleteList} />
+					<div className='list-link-icon'>
+						<RiCloseCircleLine onClick={deleteList} />
+					</div>
 				</div>
 			</div>
 		</div>

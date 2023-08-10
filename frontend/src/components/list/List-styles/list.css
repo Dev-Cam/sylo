@@ -1,12 +1,40 @@
 .items-list-wrapper {
-	background-color: white;
 	padding: 1rem;
 	width: 50%;
 	margin: 10px auto;
 	border-radius: 10px;
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	overflow-wrap: normal;
+}
+
+.list-items {
+	margin-top: 10px;
+	background-color: white;
+	border-radius: 4px;
+	padding: 10px;
 }
 
 .save-button {
 	margin: 10px;
+}
+
+.user-lists {
+	word-break: break-all;
+	word-wrap: break-word;
+}
+
+@media (max-width: 450px) {
+	.arrow {
+		display: flex;
+		justify-content: end;
+		margin: 4px;
+	}
+
+	.showSidebar {
+		visibility: visible;
+	}
+
+	.hidden {
+		visibility: hidden;
+	}
 }

@@ -1,5 +1,5 @@
 .container {
-	padding: 0.5rem;
+	padding-left: 0.5rem;
 	border-bottom: 2px solid white;
 }
 
@@ -8,4 +8,5 @@ button {
 	background-color: white;
 	padding: 0 10px;
 	border-radius: 10px;
+	margin: 10px;
 }

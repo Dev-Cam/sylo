@@ -24,10 +24,10 @@ export default function Item({ listItem }) {
 		}
 	};
 	return (
-		<div className='shopping-item'>
+		<div className='item-container'>
 			<div>{title}</div>
 
-			<div className='shopping-list-edit-remove'>
+			<div className='icon'>
 				<RiCloseCircleLine onClick={handleDelete} size={21} />
 			</div>
 		</div>

@@ -34,9 +34,12 @@ export default function ItemsPage() {
 		<div>
 			<h3>{title}</h3>
 			<AddItemInputForm />
-			<div className='list-items'>
-				{items && items.map((item) => <Item key={item._id} listItem={item} />)}
-			</div>
+			{items.length > 0 && (
+				<div className='list-items'>
+					{items &&
+						items.map((item) => <Item key={item._id} listItem={item} />)}
+				</div>
+			)}
 
 			<button className='save-button' type='submit'>
 				Save
