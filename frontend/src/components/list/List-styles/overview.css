@@ -38,7 +38,7 @@
 @media (max-width: 450px) {
 	.sidebar {
 		position: fixed;
-		border-radius: 4px;
+		border-radius: 0;
 		height: inherit;
 		width: 200px;
 	}

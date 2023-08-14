@@ -5,6 +5,7 @@
 	border-radius: 10px;
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 	overflow-wrap: normal;
+	background-color: lightslategray;
 }
 
 .list-items {
@@ -12,6 +13,7 @@
 	background-color: white;
 	border-radius: 4px;
 	padding: 10px;
+	border: 1px solid #0e65a3;
 }
 
 .save-button {

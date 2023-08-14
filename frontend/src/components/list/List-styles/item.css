@@ -28,7 +28,7 @@
 
 .item-container:hover {
 	text-decoration: underline;
-	background: #0e65a3;
+	background: darkcyan;
 	color: white;
 	border-radius: 4px;
 }

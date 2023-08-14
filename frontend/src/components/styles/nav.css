@@ -1,6 +1,8 @@
 .nav {
 	color: #0e65a3;
 	padding: 1rem;
+	background-color: #0e65a3;
+	font-weight: bold;
 }
 
 .link-wrapper {
@@ -32,9 +34,11 @@ nav a {
 	display: flex;
 	align-items: center;
 	padding: 0.5rem;
+	border: 2px solid #0e65a3;
 }
 
 a:hover {
-	color: white;
 	background-color: #0e65a3;
+	color: white;
+	border: 2px solid white;
 }

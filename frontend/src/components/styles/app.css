@@ -3,12 +3,11 @@
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
-	font-family: 'Carter One', cursive;
+	font-family: 'Carter One', sans-serif;
 }
 
 .App {
 	height: 100vh;
-	background-color: #f39f86;
-	background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%);
 	overflow: hidden;
+	background-color: whitesmoke;
 }
