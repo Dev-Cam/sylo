@@ -4,7 +4,7 @@
 	"description": "Sylo backend",
 	"main": "server.js",
 	"scripts": {
-		"start": "nodemon server.js"
+		"start": "./node_modules/.bin/nodemon server.js"
 	},
 	"keywords": [],
 	"author": "",
