@@ -16,9 +16,12 @@ export default function ItemsPage() {
 
 	useEffect(() => {
 		const fetchItems = async () => {
-			const response = await fetch(`/api/items?listId=${id}`, {
-				headers: { Authorization: `Bearer ${user.token}` },
-			});
+			const response = await fetch(
+				`${process.env.REACT_APP_API_HOST}/api/items?listId=${id}`,
+				{
+					headers: { Authorization: `Bearer ${user.token}` },
+				}
+			);
 			const json = await response.json();
 
 			if (response.ok) {

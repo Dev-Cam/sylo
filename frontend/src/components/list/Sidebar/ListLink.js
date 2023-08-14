@@ -18,10 +18,13 @@ export default function ListLink({ list }) {
 		if (!user) {
 			return;
 		}
-		const response = await fetch('/api/lists/' + list._id, {
-			method: 'DELETE',
-			headers: { Authorization: `Bearer ${user.token}` },
-		});
+		const response = await fetch(
+			`${process.env.REACT_APP_API_HOST}/api/lists/` + list._id,
+			{
+				method: 'DELETE',
+				headers: { Authorization: `Bearer ${user.token}` },
+			}
+		);
 
 		if (response.ok) {
 			dispatch({ type: 'DELETE_LIST', payload: { _id } });

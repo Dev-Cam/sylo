@@ -29,14 +29,17 @@ export default function AddItemInputForm(props) {
 
 		const item = { title, list_id };
 
-		const response = await fetch(`/api/items`, {
-			method: 'POST',
-			body: JSON.stringify(item),
-			headers: {
-				'Content-type': 'application/json',
-				Authorization: `Bearer ${user.token}`,
-			},
-		});
+		const response = await fetch(
+			`${process.env.REACT_APP_API_HOST}/api/items`,
+			{
+				method: 'POST',
+				body: JSON.stringify(item),
+				headers: {
+					'Content-type': 'application/json',
+					Authorization: `Bearer ${user.token}`,
+				},
+			}
+		);
 		const json = await response.json();
 
 		if (!response.ok) {

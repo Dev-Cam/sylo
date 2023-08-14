@@ -14,10 +14,13 @@ export default function Item({ listItem }) {
 			return;
 		}
 
-		const response = await fetch(`/api/items/${_id}`, {
-			method: 'DELETE',
-			headers: { Authorization: `Bearer ${user.token}` },
-		});
+		const response = await fetch(
+			`${process.env.REACT_APP_API_HOST}/api/items/${_id}`,
+			{
+				method: 'DELETE',
+				headers: { Authorization: `Bearer ${user.token}` },
+			}
+		);
 
 		if (response.ok) {
 			dispatch({ type: 'DELETE_ITEM', payload: { _id } });
